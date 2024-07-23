@@ -1,9 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) || $_SESSION["usertype"] !== 'admin') {
     header("location: ../login.php");
     exit;
 }
+
+$username = isset($_SESSION["username"]) ? $_SESSION["username"] : 'Guest';
+
 require_once(__DIR__ . '/../../database/koneksi.php');
 require_once(__DIR__ . '/../../controller/function.php');
 
@@ -23,7 +26,7 @@ $username = $_SESSION['username']; // Ambil nama pengguna dari sesi
 <body>
     <div class="container">
         <br>
-        <h1>Halo, <?= htmlspecialchars($username); ?></h1>
+        <h1>Halo, <?= htmlspecialchars($username); ?> (<?= htmlspecialchars($_SESSION['usertype']); ?>)</h1>
         <br>
         <a href="daftararticle.php"><button for="tambah" class="btn btn-primary">Daftar Article</button></a>
         <a href="category.php"><button for="tambah" class="btn btn-primary">Daftar Category</button></a>

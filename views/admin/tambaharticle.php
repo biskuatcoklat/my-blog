@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) || $_SESSION["usertype"] !== 'admin') {
     header("location: ../login.php");
     exit;
 }
+
 require_once(__DIR__ . '/../../database/koneksi.php');
 require_once(__DIR__ . '/../../controller/function.php');
 // session_start();

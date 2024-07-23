@@ -13,6 +13,7 @@ if (isset($_GET['query'])) {
                         JOIN categories ON articles.category_id = categories.id
                         JOIN users ON articles.user_id = users.id");
 }
+
 ?>
 
 <!DOCTYPE html>

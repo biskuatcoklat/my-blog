@@ -39,21 +39,27 @@ if (isset($_POST["login"])) {
         if (password_verify($password, $row["password"])) {
             // set session
             $_SESSION["login"] = true;
-            $_SESSION['username'] = $row['username']; // Simpan nama pengguna di sesi
+            $_SESSION["username"] = $row["username"];  // Menyimpan username di session
+            $_SESSION["usertype"] = $row["usertype"];  // Menyimpan tipe pengguna di session
 
             // cek remember me
             if (isset($_POST["remember"])) {
                 // buat cookie
-                setcookie('id', $row['id'], time() + 60);
-                setcookie('key', hash('sha256', $row['username']), time() + 60);
+                setcookie('id', $row['id'], time() + 60 * 60 * 24 * 7); // 1 minggu
+                setcookie('key', hash('sha256', $row['username']), time() + 60 * 60 * 24 * 7); // 1 minggu
             }
-            header("location: ./admin/index.php");
+
+            // Arahkan pengguna berdasarkan usertype
+            if ($row["usertype"] === 'admin') {
+                header("location: ./admin/index.php");
+            } else {
+                header("location: ./index.php");
+            }
             exit;
         }
     }
     $error = true;
 }
-
 
 ?>
 
@@ -95,7 +101,7 @@ if (isset($_POST["login"])) {
             <button type="submit" class="btn btn-primary" name="login">login</button>
 
         </form>
-        <p>Belum punya akun daftar terlebih dahulu <a href="../views/registrasi.php">Register</a></p>
+        <!-- <p>Belum punya akun daftar terlebih dahulu <a href="../views/registrasi.php">Register</a></p> -->
     </div>
     <div class="container">
         <a href="../" class="btn btn-warning">Back</a>
