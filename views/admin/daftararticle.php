@@ -29,6 +29,7 @@ $article = query("SELECT articles.id, articles.title, articles.slug, articles.co
 
 <body>
     <div class="container">
+        <br>
         <h1>Daftar Article</h1>
         <br>
         <a href="tambaharticle.php"><button for="tambah" name="tambah" class="btn btn-primary">Add Data</button></a>

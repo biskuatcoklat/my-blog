@@ -196,3 +196,67 @@ function registrasi($data)
 
     return mysqli_affected_rows($koneksi);
 }
+
+function tambahpesan($request)
+{
+    global $koneksi;
+    $name = htmlspecialchars($request["name"]);
+    $email = htmlspecialchars($request["email"]);
+    $number = htmlspecialchars($request["number"]);
+    $subject = htmlspecialchars($request["subject"]);
+    $message = htmlspecialchars($request["message"]);
+
+    $query = "INSERT INTO pesan (name,email,number,subject,message) VALUES ('$name','$email','$number','$subject','$message')";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+function delete_pesan($id)
+{
+    global $koneksi;
+    mysqli_query($koneksi, "DELETE FROM pesan WHERE id = $id");
+    return  mysqli_affected_rows($koneksi);
+}
+
+function tambahtag($request)
+{
+    global $koneksi;
+    $name = htmlspecialchars($request["name"]);
+    $slug = htmlspecialchars($request["slug"]);
+
+    $query = "INSERT INTO tags (name,slug) VALUES ('$name','$slug')";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+function delete_tag($id)
+{
+    global $koneksi;
+    mysqli_query($koneksi, "DELETE FROM tags WHERE id = $id");
+    return  mysqli_affected_rows($koneksi);
+}
+
+function searchArticles($query)
+{
+    global $koneksi;
+
+    $stmt = $koneksi->prepare("SELECT articles.id, articles.title, articles.slug, articles.content, articles.foto, articles.created_at, categories.name AS category_name, users.username AS author
+                               FROM articles
+                               JOIN categories ON articles.category_id = categories.id
+                               JOIN users ON articles.user_id = users.id
+                               WHERE articles.title LIKE ? OR articles.content LIKE ?");
+    $searchTerm = "%" . $query . "%";
+    $stmt->bind_param("ss", $searchTerm, $searchTerm);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $articles = [];
+    while ($row = $result->fetch_assoc()) {
+        $articles[] = $row;
+    }
+    $stmt->close();
+    return $articles;
+}

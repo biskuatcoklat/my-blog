@@ -47,6 +47,7 @@ if (isset($_POST["submit"])) {
 
 <body>
     <div class="container">
+        <br>
         <h1>Add Data Article</h1>
         <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">

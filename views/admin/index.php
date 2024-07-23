@@ -6,6 +6,9 @@ if (!isset($_SESSION["login"])) {
 }
 require_once(__DIR__ . '/../../database/koneksi.php');
 require_once(__DIR__ . '/../../controller/function.php');
+
+$username = $_SESSION['username']; // Ambil nama pengguna dari sesi
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -19,11 +22,13 @@ require_once(__DIR__ . '/../../controller/function.php');
 
 <body>
     <div class="container">
-        <h1>Halo Admin</h1>
         <br>
-        <a href="daftararticle.php"><button for="tambah" name="tambah" class="btn btn-primary">Daftar Article</button></a>
-        <a href="category.php"><button for="tambah" name="tambah" class="btn btn-primary">Daftar Category</button></a>
-        <a href="tag.php"><button for="tambah" name="tambah" class="btn btn-primary">Daftar Tag</button></a>
+        <h1>Halo, <?= htmlspecialchars($username); ?></h1>
+        <br>
+        <a href="daftararticle.php"><button for="tambah" class="btn btn-primary">Daftar Article</button></a>
+        <a href="category.php"><button for="tambah" class="btn btn-primary">Daftar Category</button></a>
+        <a href="tag.php"><button for="tambah" class="btn btn-primary">Daftar Tag</button></a>
+        <a href="pesan.php"><button for="tambah" class="btn btn-primary">Pesan</button></a>
         <a href="/../cms/views/logout.php" onclick="return confirm('Do you want to Logout?');"><button for="tambah" name="logout" class="btn btn-danger">Logout</button></a>
         <br><br>
     </div>

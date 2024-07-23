@@ -10,10 +10,10 @@ require_once(__DIR__ . '/../../controller/function.php');
 
 if (isset($_POST['delete'])) {
     $id = $_POST['id'];
-    delete_category($id);
+    delete_pesan($id);
 }
 
-$category = query("SELECT * FROM categories");
+$pesan = query("SELECT * FROM pesan");
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,45 +21,43 @@ $category = query("SELECT * FROM categories");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daftar Category</title>
+    <title>Daftar Pesan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
+        <h1>Daftar Pesan</h1>
         <br>
-        <h1>Daftar Category</h1>
-        <br>
-        <a href="tambahcategory.php"><button for="tambah" name="tambah" class="btn btn-primary">Add Data</button></a>
-        <br><br>
-
-
         <table class="table">
             <thead>
 
                 <tr>
                     <th>No.</th>
-                    <th>Title</th>
-                    <th>Slug</th>
-                    <th>Description</th>
+                    <th>Nama</th>
+                    <th>email</th>
+                    <th>No Hp</th>
+                    <th>subject</th>
+                    <th>Message</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
 
                 <?php $i = 1; ?>
-                <?php foreach ($category as $row) : ?>
+                <?php foreach ($pesan as $row) : ?>
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><?= $row["name"]; ?></td>
-                        <td><?= $row["slug"]; ?></td>
-                        <td><?= $row["description"]; ?></td>
+                        <td><?= $row["email"]; ?></td>
+                        <td><?= $row["number"]; ?></td>
+                        <td><?= $row["subject"]; ?></td>
+                        <td><?= $row["message"]; ?></td>
                         <td>
                             <div style="display: flex; gap: 5px;">
-                                <a href="editcategory.php?id=<?= $row["id"]; ?>" class="btn btn-primary btn-sm">Edit</a>
                                 <form action="" method="post" style="margin: 0;">
                                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                                    <button type="submit" name="delete" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this category?');">Delete</button>
+                                    <button type="submit" name="delete" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this article?');">Delete</button>
                                 </form>
                             </div>
                         </td>

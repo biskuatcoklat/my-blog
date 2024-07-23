@@ -14,7 +14,7 @@ if (isset($_POST["submit"])) {
         document.location.href = '../admin/category.php';</script>";
     } else {
         echo "<script>alert('Data gagal diperbarui');
-        document.location.href = 'editcategory.php?id=$id';</script>";
+        document.location.href = '../admin/tambahcategory.php';</script>";
     }
 }
 
@@ -34,6 +34,7 @@ if (isset($_POST["submit"])) {
 
 <body>
     <div class="container">
+        <br>
         <h1>tambah Data Category</h1>
         <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">

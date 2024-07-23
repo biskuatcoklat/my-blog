@@ -46,6 +46,7 @@ if (isset($_POST["submit"])) {
 
 <body>
     <div class="container">
+        <br>
         <h1>Edit Data Article</h1>
         <form action="" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $article['id']; ?>">

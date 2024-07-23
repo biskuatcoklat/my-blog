@@ -1,5 +1,4 @@
 <header class="header">
-
     <a href="#" class="logo"><span>My</span>Blog</a>
 
     <nav class="navbar">
@@ -15,7 +14,7 @@
     </div>
 
     <form action="" class="search-form">
-        <input type="search" name="" placeholder="search here..." id="search-box">
+        <input type="search" name="query" placeholder="search here..." id="search-box">
         <label for="search-box" class="fas fa-search"></label>
     </form><br>
 
