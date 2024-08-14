@@ -52,7 +52,10 @@ if (isset($_GET['query'])) {
                         <span>10 Nov, 2021</span>
                     </div>
                     <h3 class="title"><?= $row['title']; ?></h3>
-                    <p class="text"><?= $row['content']; ?> <a href="judul 1.html" style="color: blue;"><u>Berikut penjelasan</u></a> </p>
+                    <p class="text">
+                        <?= strlen($row["content"]) > 100 ? substr($row["content"], 0, 100) . '...' : $row["content"]; ?>
+                        <a href="../cms/views/detailcontent.php?id=<?= $row["id"]; ?>" style="color: blue;"><u>Berikut penjelasan</u></a>
+                    </p>
                     <div class="links">
                         <?php
                         $date = new DateTime($row['created_at']);

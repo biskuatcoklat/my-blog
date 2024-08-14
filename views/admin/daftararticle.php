@@ -59,7 +59,7 @@ $article = query("SELECT articles.id, articles.title, articles.slug, articles.co
                         <td><?php echo $i; ?></td>
                         <td><?= $row["title"]; ?></td>
                         <td><?= $row["slug"]; ?></td>
-                        <td><?= $row["content"]; ?></td>
+                        <td><?= strlen($row["content"]) > 50 ? substr($row["content"], 0, 50) . '...' : $row["content"]; ?></td>
                         <td><?= $row["category_name"]; ?></td>
                         <td><?= $row["author"]; ?></td>
                         <td><img src="/cms/controller/img/<?php echo $row["foto"]; ?>" width="100"></td>
