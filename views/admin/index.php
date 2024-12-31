@@ -32,6 +32,7 @@ $username = $_SESSION['username']; // Ambil nama pengguna dari sesi
         <a href="category.php"><button for="tambah" class="btn btn-primary">Daftar Category</button></a>
         <a href="tag.php"><button for="tambah" class="btn btn-primary">Daftar Tag</button></a>
         <a href="pesan.php"><button for="tambah" class="btn btn-primary">Pesan</button></a>
+        <a href="/../cms/"><button for="tambah" class="btn btn-success"> Back to Home</button></a>
         <a href="/../cms/views/logout.php" onclick="return confirm('Do you want to Logout?');"><button for="tambah" name="logout" class="btn btn-danger">Logout</button></a>
         <br><br>
     </div>
