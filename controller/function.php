@@ -257,3 +257,42 @@ function searchArticles($query)
     $stmt->close();
     return $articles;
 }
+
+function editprofile($request)
+{
+    global $koneksi;
+
+    $id = htmlspecialchars($request["id"]);
+    $user_id = htmlspecialchars($request["user_id"]);
+    $hobi = htmlspecialchars($request["hobi"]);
+    $kata_kata_bijaksana = htmlspecialchars($request["kata_kata_bijaksana"]);
+    $foto_lama = htmlspecialchars($request["foto_lama"]);
+    $link_ig = htmlspecialchars($request["link_ig"]);
+    $link_linkedin = htmlspecialchars($request["link_linkedin"]);
+    $link_fb = htmlspecialchars($request["link_fb"]);
+    $link_twitter = htmlspecialchars($request["link_twitter"]);
+    // Cek apakah user pilih gambar baru atau tidak
+    if ($_FILES['image']['error'] === 4) {
+        $image = $foto_lama;
+    } else {
+        $image = upload();
+        if (!$image) {
+            return false;
+        }
+    }
+
+    $query = "UPDATE admin SET
+                user_id = '$user_id',
+                hobi = '$hobi',
+                kata_kata_bijaksana = '$kata_kata_bijaksana',
+                hobi = '$hobi',
+                image = '$image',
+                link_ig = '$link_ig',
+                link_linkedin = '$link_linkedin',
+                link_fb = '$link_fb',
+                link_twitter = '$link_twitter'
+                WHERE id = $id";
+
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+}

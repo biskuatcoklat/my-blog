@@ -49,7 +49,7 @@ if (isset($_GET['query'])) {
                     <a href="#"><img src="/cms/controller/img/<?php echo $row["foto"]; ?>" alt="" class="image"></a>
                     <div class="date">
                         <i class="far fa-clock"></i>
-                        <span>10 Nov, 2021</span>
+                        <span><?= $row['category_name'] ?></span>
                     </div>
                     <h3 class="title"><?= $row['title']; ?></h3>
                     <p class="text">

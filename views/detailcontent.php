@@ -8,9 +8,10 @@ $id = $_GET['id'];
 
 // Ambil data artikel berdasarkan id
 if ($id) {
-    $article = query("SELECT articles.*, users.username AS author 
+    $article = query("SELECT articles.*, users.username AS author, categories.name AS category_name
                       FROM articles 
                       JOIN users ON articles.user_id = users.id 
+                      JOIN categories ON articles.category_id = categories.id
                       WHERE articles.id = $id")[0];
 }
 
@@ -83,7 +84,7 @@ if ($id) {
                 <a href="#"><img src="/cms/controller/img/<?php echo $article["foto"]; ?>" alt="" class="image"></a>
                 <div class="date">
                     <i class="far fa-clock"></i>
-                    <span>10 Nov, 2021</span>
+                    <span><?= $article['category_name'] ?></span>
                 </div>
                 <h3 class="title"><?= $article['title']; ?></h3>
                 <p class="text"><?= $article['content']; ?> </p>
