@@ -1,5 +1,5 @@
 <header class="header">
-    <a href="#" class="logo"><span>My</span>Blog</a>
+    <a href="/../cms/" class="logo"><span>My</span>Blog</a>
     <?php
     session_start();
     ?>
@@ -20,8 +20,8 @@
         <i class="fas fa-search" id="search-icon"></i>
     </div>
 
-    <form action="" class="search-form">
-        <input type="search" name="query" placeholder="search here..." id="search-box">
+    <form action="" method="get" class="search-form">
+        <input type="search" name="query" autocomplete="off" placeholder="search here..." id="search-box">
         <label for="search-box" class="fas fa-search"></label>
     </form><br>
 

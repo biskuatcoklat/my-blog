@@ -2,17 +2,26 @@
 require_once(__DIR__ . '/../database/koneksi.php');
 require_once(__DIR__ . '/../controller/function.php');
 
-$articles = [];
-// Ambil id artikel dari query string
-$id = $_GET['id'];
+// Periksa apakah parameter `slug` ada
+if (isset($_GET['slug'])) {
+    $slug = $_GET['slug'];
 
-// Ambil data artikel berdasarkan id
-if ($id) {
-    $article = query("SELECT articles.*, users.username AS author, categories.name AS category_name
-                      FROM articles 
-                      JOIN users ON articles.user_id = users.id 
+    // Ambil artikel berdasarkan slug
+    $article = query("SELECT articles.id, articles.title, articles.slug, articles.content, articles.foto, articles.created_at, categories.name AS category_name, users.username AS author
+                      FROM articles
                       JOIN categories ON articles.category_id = categories.id
-                      WHERE articles.id = $id")[0];
+                      JOIN users ON articles.user_id = users.id
+                      WHERE articles.slug = ?", [$slug]);
+
+    // Jika artikel tidak ditemukan
+    if (empty($article)) {
+        die("Artikel tidak ditemukan.");
+    }
+
+    // Ambil artikel pertama (karena query mengembalikan array)
+    $article = $article[0];
+} else {
+    die("Parameter slug tidak ditemukan.");
 }
 
 ?>

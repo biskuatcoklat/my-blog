@@ -1,16 +1,38 @@
 <?php
 require_once(__DIR__ . '/../database/koneksi.php');
 
-function query($query)
+function query($query, $params = [])
 {
     global $koneksi;
-    $result = mysqli_query($koneksi, $query);
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
+
+    // Siapkan statement
+    $stmt = mysqli_prepare($koneksi, $query);
+    if ($stmt === false) {
+        die('Query preparation failed: ' . mysqli_error($koneksi));
     }
 
-    return $rows;
+    // Jika ada parameter, bind parameter ke statement
+    if (!empty($params)) {
+        // Tentukan tipe data setiap parameter (semua dianggap string 's' di sini)
+        $types = str_repeat('s', count($params));
+        mysqli_stmt_bind_param($stmt, $types, ...$params);
+    }
+
+    // Eksekusi statement
+    mysqli_stmt_execute($stmt);
+
+    // Ambil hasil jika query adalah SELECT
+    $result = mysqli_stmt_get_result($stmt);
+    if ($result) {
+        $rows = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+        return $rows; // Kembalikan hasil sebagai array asosiatif
+    }
+
+    // Jika bukan SELECT, kembalikan true jika berhasil
+    return mysqli_stmt_affected_rows($stmt) > 0;
 }
 
 function  tambaharticle($request)
