@@ -45,14 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="" method="POST">
             <h3>Contact Me</h3>
             <div class="inputBox">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" autocomplete="off" name="name" placeholder="Name" required>
+                <input type="email" autocomplete="off" name="email" placeholder="Email" required>
             </div>
             <div class="inputBox">
-                <input type="number" name="number" placeholder="Number" required>
-                <input type="text" name="subject" placeholder="Subject" required>
+                <input type="number" autocomplete="off" name="number" placeholder="Number" required>
+                <input type="text" autocomplete="off" name="subject" placeholder="Subject" required>
             </div>
-            <textarea name="message" placeholder="Message" cols="30" rows="10" required></textarea>
+            <textarea name="message" autocomplete="off" placeholder="Message" cols="30" rows="10" required></textarea>
             <input type="submit" name="submit" value="Send Message" class="btn">
         </form>
 

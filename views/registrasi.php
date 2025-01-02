@@ -76,7 +76,7 @@ if (isset($_POST['registrasi'])) {
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
                             <input type="text" id="form3Example3" class="form-control form-control-lg"
-                                placeholder="Enter a valid username" name="username" />
+                                placeholder="Enter a valid username" name="username" autocomplete="off" />
                             <label class="form-label" for="form3Example3">Username</label>
                         </div>
 
@@ -95,7 +95,7 @@ if (isset($_POST['registrasi'])) {
 
                         <div data-mdb-input-init class="form-outline mb-4">
                             <input type="text" id="form3Example3" class="form-control form-control-lg"
-                                placeholder="Enter a valid email address" name="email" />
+                                placeholder="Enter a valid email address" name="email" autocomplete="off" />
                             <label class="form-label" for="form3Example3">Email</label>
                         </div>
 

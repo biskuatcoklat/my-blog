@@ -132,7 +132,7 @@ if (isset($_POST["login"])) {
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
                             <input type="text" id="form3Example3" class="form-control form-control-lg"
-                                placeholder="Enter a valid email username" name="username" />
+                                placeholder="Enter a valid email username" name="username" autocomplete="off" />
                             <label class="form-label" for="form3Example3">Username</label>
                         </div>
 
