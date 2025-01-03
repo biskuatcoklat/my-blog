@@ -318,3 +318,22 @@ function editprofile($request)
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }
+
+function edituser($request)
+{
+    global $koneksi;
+    $id = htmlspecialchars($request['id']);
+    $username = htmlspecialchars($request['username']);
+    $email = htmlspecialchars($request['email']);
+    $usertype = htmlspecialchars($request['usertype']);
+    $query = "UPDATE users SET username = '$username', email = '$email', usertype = '$usertype' WHERE id = $id";
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+}
+
+function delete_user($id)
+{
+    global $koneksi;
+    mysqli_query($koneksi, "DELETE FROM users WHERE id = $id");
+    return mysqli_affected_rows($koneksi);
+}
